@@ -18,6 +18,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -32,6 +33,25 @@
 
             <!-- Page Content -->
             <main>
+                @if(Session::has('success'))
+                    <div class="alert alert-success alert-dismissible text-center" role="alert">
+                        {!! Session::get('success') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                @if(Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible text-center" role="alert">
+                        {!! Session::get('error') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                @if(Session::has('warning'))
+                    <div class="alert alert-warning alert-dismissible text-center" role="alert">
+                        {!! Session::get('warning') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 {{ $slot }}
             </main>
         </div>
