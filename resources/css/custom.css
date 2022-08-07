@@ -1,3 +1,15 @@
+.change_language{
+	margin-right: 5px;
+	padding: 3px;
+	border: solid 1px gray;
+	border-radius: 50%;
+	background-color: lightgray;
+}
+
+.change_language *{
+	color: white;
+}
+
 form.delete{
 	display: inline-block;
 }

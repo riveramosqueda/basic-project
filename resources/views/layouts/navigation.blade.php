@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('dashboard.index.title') }}
                     </x-nav-link>
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         {{ __('users.index.title') }}
@@ -23,6 +23,24 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <x-dropdown align="right" width="48">
+                    <x-slot name="trigger">
+                        <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out change_language">
+                            <div><b>{{ strtoupper(\App::getLocale()) }}</b></div>
+                        </button>
+                    </x-slot>
+
+                    <x-slot name="content">
+                        @foreach(config('app.available_locales') as $available_locale)
+                            @if(\App::getLocale() != $available_locale)
+                                <x-dropdown-link :href="route('change_language',['locale'=>$available_locale])">
+                                    {{ __('dashboard.index.change_to', ['language'=>(trans('dashboard.index.available_languages.'.$available_locale))]) }}
+                                </x-dropdown-link>
+                            @endif
+                        @endforeach
+                    </x-slot>
+                </x-dropdown>
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -44,7 +62,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('dashboard.index.logout') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -67,7 +85,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('dashboard.index.title') }}
             </x-responsive-nav-link>
         </div>
 
@@ -86,7 +104,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('dash.index.logout') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

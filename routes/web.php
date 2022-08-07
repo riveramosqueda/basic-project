@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UserController;
+use \App\Http\Controllers\LogController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +19,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+Route::get('/change_language', function (Request $request) {
+    if($request->locale && in_array($request->locale, config('app.available_locales'))){
+        \App::setLocale($request->locale);
+        \Session::put('locale',$request->locale);
+    }
+
+    return redirect()->back();
+})->name('change_language');
 
 
 Route::middleware(['auth'])->group(function () {
+    /*Dashboard*/
+    Route::get('/dashboard', [LogController::class, 'index'])->name('dashboard');
+
     /*Simple translations route for JS AJAX */
     Route::get('/getTranslations',function(\Illuminate\Http\Request $request){
         $translations=[];
