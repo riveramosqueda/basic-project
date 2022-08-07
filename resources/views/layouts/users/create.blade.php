@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create new user') }}
+            {{ __('users.create.title') }}
         </h2>
     </x-slot>
 
@@ -12,21 +12,21 @@
                 	<form action="{{ route('users.store') }}" class="row g-3" method="POST">
                 		@csrf
 						<div class="col-md-6">
-							<label for="name" class="form-label">Name</label>
+							<label for="name" class="form-label">{{ __('users.create.name') }}</label>
 							<input type="name" class="form-control" value="{{ old('name') }}" name="name" id="name">
 							@error('name')
 							    <div class="alert alert-danger">{{ getRequestErrors($errors,'name') }}</div>
 							@enderror
 						</div>
 						<div class="col-md-6">
-							<label for="email" class="form-label">Email</label>
+							<label for="email" class="form-label">{{ __('users.create.email') }}</label>
 							<input type="email" class="form-control" value="{{ old('email') }}" name="email" id="email">
-							@error('name')
+							@error('email')
 							    <div class="alert alert-danger">{{ getRequestErrors($errors,'email') }}</div>
 							@enderror
 						</div>
 						<div class="col-md-12">
-	                		<button type="submit" class="btn btn-primary">Save</button>
+	                		<button type="submit" class="btn btn-primary" onclick="disableOnClick(this)">{{ __('users.create.store') }}</button>
 		                </div>
                 	</form>
                 </div>

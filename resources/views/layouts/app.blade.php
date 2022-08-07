@@ -13,6 +13,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
 
         <!-- Scripts -->
@@ -55,5 +56,6 @@
                 {{ $slot }}
             </main>
         </div>
+        <script src="{{ asset('js/custom.js') }}" type="text/javascript"></script>
     </body>
 </html>

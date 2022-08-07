@@ -23,6 +23,15 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth'])->group(function () {
+    /*Simple translations route for JS AJAX */
+    Route::get('/getTranslations',function(\Illuminate\Http\Request $request){
+        $translations=[];
+        foreach($request->translations as $translation){
+            $translations[$translation]=trans($translation);
+        }
+        return response()->json($translations);
+    });
+
     /*User related routes*/
     Route::controller(UserController::class)->prefix('users')->name('users.')->group(function () {
         Route::get('/', 'index')->name('index');

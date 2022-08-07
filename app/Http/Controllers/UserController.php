@@ -50,7 +50,7 @@ class UserController extends Controller
 
         \Mail::to($user->email)->send(new CreatedUser($user,$password));
 
-        return redirect()->route('users.index')->with('success', __('Created succesfully'));
+        return redirect()->route('users.index')->with('success', __('users.create.stored'));
     }
 
     /**
@@ -91,7 +91,7 @@ class UserController extends Controller
         $user=User::findOrFail($id);
 
         if(User::where([['id','!=',$id],['email',$request->email]])->count()){
-            return redirect()->back()->with('error-email', __('Field Email must be unique'));
+            return redirect()->back()->with('error-email', __('users.edit.validations.email_unique'));
         }
 
         if($request->password){
@@ -106,7 +106,7 @@ class UserController extends Controller
         $user->update($request->all());
 
 
-        return redirect()->back()->with('success', __('Updated succesfully'));
+        return redirect()->back()->with('success', __('users.edit.updated'));
     }
 
     /**
@@ -121,6 +121,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->back()->with('success', __('Deleted succesfully'));
+        return redirect()->back()->with('success', __('users.delete.deleted'));
     }
 }

@@ -45,6 +45,6 @@ class User extends Authenticatable
     ];
 
     public function getStatusAttribute(){
-        return $this->active?('Active'):('Inactive');
+        return $this->active?(trans('users.index.active')):(trans('users.index.inactive'));
     }
 }

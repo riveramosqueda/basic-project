@@ -25,7 +25,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'email' => 'required|max:255',
+            'email' => 'required|email|max:255',
         ];
     }
 
@@ -37,10 +37,10 @@ class UpdateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('Field Name is required'),
-            'name.max' => __('Caracters in field Name must be below 255'),
-            'email.required' => __('Field Email is required'),
-            'email.max' => __('Caracters in field Email must be below 255'),
+            'name.required' => __('users.edit.validations.name_required'),
+            'name.max' => __('users.edit.validations.name_max'),
+            'email.required' => __('users.edit.validations.email_required'),
+            'email.max' => __('users.edit.validations.email_max'),
         ];
     }
 }

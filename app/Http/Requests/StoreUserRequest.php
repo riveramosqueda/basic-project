@@ -25,7 +25,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'email' => 'required|unique:users|max:255',
+            'email' => 'required|email|unique:users|max:255',
         ];
     }
 
@@ -37,11 +37,11 @@ class StoreUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('Field Name is required'),
-            'name.max' => __('Caracters in field Name must be below 255'),
-            'email.required' => __('Field Email is required'),
-            'email.unique' => __('Field Email must be unique'),
-            'email.max' => __('Caracters in field Email must be below 255'),
+            'name.required' => __('users.create.validations.name_required'),
+            'name.max' => __('users.create.validations.name_max'),
+            'email.required' => __('users.create.validations.email_required'),
+            'email.unique' => __('users.create.validations.email_unique'),
+            'email.max' => __('users.create.validations.email_max'),
         ];
     }
 }
